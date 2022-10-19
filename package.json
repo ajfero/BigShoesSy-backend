@@ -1,0 +1,29 @@
+{
+  "name": "bigshoessy-backend",
+  "version": "1.0.0",
+  "description": "Api-rest Backend --> This is an Backend api-rest for project BigShoesSy",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/index.js"
+  },
+  "keywords": [
+    "server",
+    "api-rest",
+    "backend",
+    "nodeJs",
+    "MongoDB"
+  ],
+  "author": "Ajfero",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongodb": "^4.1.1",
+    "mongoose": "^6.0.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
