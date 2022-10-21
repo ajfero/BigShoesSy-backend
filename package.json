@@ -5,13 +5,14 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/index.js"
+    "start": "node src/server.js"
   },
   "keywords": [
     "server",
     "api-rest",
     "backend",
     "nodeJs",
+    "mySql",
     "MongoDB"
   ],
   "author": "Ajfero",
