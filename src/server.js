@@ -1,14 +1,18 @@
-const http = require('node:http');
+// import { Express } from 'express';
+const express = require('express');
 
+// Settings Definitions
 const hostname = '127.0.0.1';
 const port = 3000;
 
-const server = http.createServer((req, res) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('Hello, World!\n');
+var app = express();
+
+// Create a route for /root
+app.use('/', function (req, res) {
+    res.send('Hello, World!\n');
 });
 
-server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
+// App definitions using framework express.
+app.listen(port, hostname, () => {
+    console.log(`app running at http://${hostname}:${port}/`);
 });
