@@ -27,6 +27,9 @@ app.use(express.urlencoded({ extended: false })); // to-do: resolver el con el b
 router(app);
 // app.use("/api", routes);
 
+// Server statics Files.
+app.use('/app', express.static('public')) // http://localhost:9000/app/ le decimos a la ppa que en la ruta app use la funcion stactic para la carpeta public
+
 /**
  * Create Server -> Server listening
 */
