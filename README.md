@@ -13,9 +13,13 @@ npx sequelize-cli db:migrate
 
 # Created Seeders queries -> New data harcoded.
 npx sequelize-cli db:seed:all
+
+# Serve the App.
+npm run start
+
 ```
 
-# App Construction and init App
+# App Construction
 - npm init  -> package.json
 - Install dependecies
   - **dependencies**
