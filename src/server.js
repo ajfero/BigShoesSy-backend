@@ -1,4 +1,4 @@
-/* Sever.js Settings Server */
+/* Sever.js -> Settings Server */
 
 /**
  *  Imports and Requirements
@@ -13,7 +13,7 @@ require("dotenv").config(); // For using environments variables.
 */
 var app = express();
 const hostname = '127.0.0.1'; // Ip-local hostdirection.
-const port = process.env.PORT || 9000; // http://localhost/9000
+const port = process.env.PORT || 3000; // http://localhost/9000/api
 
 /**
  * Middleware
