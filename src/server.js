@@ -1,38 +1,34 @@
-/* Sever.js -> Settings Server */
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
+const { json } = require("body-parser");
+const app = express();
 
-/**
- *  Imports and Requirements
-*/
-const express = require('express'); // Framework { Express } from 'express' for petitions Http.
-const router = require('./config/routes'); // Routes -> Config Api Routes config
+//Requires to routes
+const authRoute = require("./routes/auth.routes");
+const usersRoute = require("./routes/users.routes");
 
-require("dotenv").config(); // For using environments variables.
+//Middleware
+app.use(cors())
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(json())
 
-/**
- * App Settings -> Definitions
-*/
-var app = express();
-const hostname = '127.0.0.1'; // Ip-local hostdirection.
-const port = process.env.PORT || 3000; // http://localhost/9000/api
+// Routes
+app.use("/api/users", usersRoute);
+app.use("/api/", authRoute);
 
-/**
- * Middleware
-*/
-app.use(express.json()); // usamos la efuncion de express para que nuestra app devuelva un json.
-app.use(express.urlencoded({ extended: false })); // to-do: resolver el con el body-parsel (Resuelto)
+//Elimina el cache, para evitar errores con Logout
+app.use(function (req, res, next) {
+  if (!req.user) { res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate'); }
+  next()
+})
 
-/**
- * Routes with prefix
- */
-router(app);
-// app.use("/api", routes);
+app.use((req, res, next) => {
+  res.status(404).json({
+    status: '404',
+    descripcion: 'Pagina no encontrada'
+  })
+})
 
-// Server statics Files.
-app.use('/app', express.static('public')) // http://localhost:9000/app/ le decimos a la ppa que en la ruta app use la funcion stactic para la carpeta public
-
-/**
- * Create Server -> Server listening
-*/
-app.listen(port, hostname, () => {
-    console.log(`app running at http://${hostname}:${port}/`); // http://localhost/9000
-});
+module.exports = app;

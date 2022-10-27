@@ -12,7 +12,7 @@ npm install
 npx sequelize-cli db:migrate
 
 # Created Seeders queries -> New data harcoded.
-npx sequelize-cli db:seed:all
+sequelize db:migrate:undo
 
 # Serve the App.
 npm run start
@@ -69,26 +69,37 @@ npm run start
     │   │    └── userRoute.js
     │   │    └── messageRoute.js
     │   │
-    │   └── config/ <------------------------------ Config.
+    │   └── config/ <------------------------------- Config.
     │   │    └── database.js
     │   │    └── config.js
     │   │    └── index.js
     │   │
-    │   └── public/ <------------------------------ Client.
+    │   └── public/ <------------------------------- Client.
     │   │     └── index.html
     │   │     └── styles.css
     │   │
-    │   └── network/ <----------------------------- Network.
+    │   └── network/ <------------------------------ Network.
     │   │   └── response.js <-- Errors.
     │   │   └── routes.js   <-- Routes.
     │   │
     │   └── server.js <------- Server.
     │
-    ├── node_modules/<---------------------------- Dependencies.
-    │   └── express
-    │   │   ├── body-parser
-    │   │   └──
-    │   └── dotenv
+    └── node_modules/<----------------------------- Dependencies.
+        └── dependecies
+        │   └── express
+        │   │   ├── body-parser
+        │   │   └──
+        │   └── dotenv
+        │   └── bcryptjs
+        │   └── cors
+        │   └── express-validator
+        │   └── jsonwebtoken
+        │   └── jwt-check-expiration
+        │   └── mysql
+        │   └── mysql2
+        │   └── sequelize
+        └── devDdependecies
+            └── nodemon
 
 # Autentificación con JWT y Sequelize
 Un ejemplo o boilerplate de autorización basada en JWT y Sequelize ORM de JavaScript con Roles (admin, user...ect) y políticas. Obviando lo de Express, Node, Sequelize CLI, MySQL (al ser ORM puedes utilizar Postgre, MariaDB, SQLite).
@@ -102,9 +113,9 @@ npx sequelize-cli init
 npx sequelize-cli db:migrate
 
 # Create models with Seeder and Migrations
-npx sequelize-cli model:generate --name user --attributes name:string, password:string, email:string
+sequelize model:create --name User --attributes name:string,email:string
 
-# Create models with Seeder and Migrations
+# Create Migrations with Seeder and Migrations
 npx sequelize-cli model:generate --name user --attributes name:string, password:string, email:string
 ```
 
@@ -118,3 +129,29 @@ npx sequelize-cli model:generate --name user --attributes name:string, password:
 - Create **Controller**
 - Create **Manage data** (user, password, email)
 - Create  **Jwt generate**
+
+
+login
+	email
+	password
+
+register
+	name
+	email
+	password
+	c_password
+	role -> in Backend
+	date -> in Backend
+
+messages
+	name -> user
+	email -> email
+	subject -> title
+	message 
+
+Models
+	Users 
+		name
+		email
+		password
+		c_password

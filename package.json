@@ -1,29 +1,42 @@
 {
-  "name": "bigshoessy-backend",
+  "name": "clase-node",
   "version": "1.0.0",
-  "description": "Api-rest Backend --> This is an Backend api-rest for project BigShoesSy",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/server.js"
+  "description": "",
+  "main": "src/app.js",
+  "engines": {
+    "node": "14.16.1",
+    "npm": "6.14.12"
   },
-  "keywords": [
-    "BigShoesSy",
-    "server",
-    "api-rest",
-    "backend",
-    "nodeJs",
-    "mySql",
-    "MongoDB"
-  ],
-  "author": "Ajfero",
-  "license": "MIT",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/syloper/clase-node.git"
+  },
+  "keywords": [],
+  "author": "Syloper",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/syloper/clase-node/issues"
+  },
+  "homepage": "https://gitlab.com/syloper/clase-node#readme",
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "express": "^4.17.1",
-    "dotenv": "^10.0.0"
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-validator": "^6.14.2",
+    "jsonwebtoken": "^8.5.1",
+    "jwt-check-expiration": "^1.0.5",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.20.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.16"
   }
 }
