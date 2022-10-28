@@ -1,28 +1,24 @@
 {
-  "name": "clase-node",
+  "name": "bigshoessy-backend",
   "version": "1.0.0",
   "description": "",
   "main": "src/app.js",
-  "engines": {
-    "node": "14.16.1",
-    "npm": "6.14.12"
-  },
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon src/app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@gitlab.com/syloper/clase-node.git"
-  },
-  "keywords": [],
-  "author": "Syloper",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://gitlab.com/syloper/clase-node/issues"
-  },
-  "homepage": "https://gitlab.com/syloper/clase-node#readme",
+  "keywords": [
+    "BigShoesSy",
+    "server",
+    "api-rest",
+    "backend",
+    "nodeJs",
+    "mySql",
+    "MongoDB"
+  ],
+  "author": "ajfero",
+  "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.0",

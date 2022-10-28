@@ -45,14 +45,20 @@ const logIn = async (req, res) => {
 
         //Seteo un Token
         let token = jwt.sign(
-          { id: user.id, email: user.email },
+          {
+            id: user.id,
+            email: user.email
+          },
           process.env.ACCESS_TOKEN_SECRET,
           { expiresIn: process.env.TOKEN_EXPIRES || "8h" }
         );
 
         //Refresco el Token
         let refreshToken = jwt.sign(
-          { id: user.id, email: user.email },
+          {
+            id: user.id,
+            email: user.email
+          },
           process.env.REFRESH_TOKEN_SECRET,
           { expiresIn: process.env.TOKEN_EXPIRES || "8h" }
         );
@@ -74,6 +80,7 @@ const logIn = async (req, res) => {
             .json({ msg: "Algo ha fallado update!", error });
         }
         return res.status(200).json({ user, token });
+
       }
 
       //Acceso denegado - Usuario y/o contraseña invalidos
@@ -82,12 +89,15 @@ const logIn = async (req, res) => {
           .status(401)
           .json({ msg: "Usuario y/o contraseña incorrecta" });
       }
+
     })
+
     //Login Error
     .catch((error) => {
       //Fallo al buscar el email en la base de datos
-      return res.status(400).json(error);
+      return res.status(400).json('email db error', error);
     });
+
 };
 
 const changePassword = async (req, res) => {
