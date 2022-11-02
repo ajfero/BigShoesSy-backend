@@ -117,6 +117,11 @@ sequelize model:create --name User --attributes name:string,email:string
 
 # Create Migrations with Seeder and Migrations
 npx sequelize-cli model:generate --name user --attributes name:string, password:string, email:string
+
+# Messages
+npx sequelize-cli model:generate --name message --attributes name:string,email:string,subject:string,message:string
+
+
 ```
 
 # Resume

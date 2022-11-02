@@ -7,6 +7,7 @@ const app = express();
 //Requires to routes
 const authRoute = require("./routes/auth.routes");
 const usersRoute = require("./routes/users.routes");
+const messageRoute = require("./routes/message.routes");
 
 //Middleware
 app.use(cors())
@@ -16,7 +17,8 @@ app.use(json())
 
 // Routes
 app.use("/api/users", usersRoute);
-app.use("/api/", authRoute);
+app.use("/api", authRoute);
+app.use("/api", messageRoute);
 
 //Elimina el cache, para evitar errores con Logout
 app.use(function (req, res, next) {
