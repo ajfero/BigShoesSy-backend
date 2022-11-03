@@ -24,7 +24,16 @@ module.exports = {
       },
       role: {
         type: Sequelize.STRING(20),
-        allowNull: false
+        allowNull: false,
+        defaultValue: "user"
+      },
+      resetToken: {
+        type: Sequelize.STRING(1020),
+        allowNull: true
+      },
+      refreshToken: {
+        type: Sequelize.STRING(1020),
+        allowNull: true
       },
       createdAt: {
         allowNull: false,
