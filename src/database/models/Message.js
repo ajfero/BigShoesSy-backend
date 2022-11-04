@@ -1,6 +1,5 @@
 'use strict';
 const { Model } = require('sequelize');
-
 module.exports = (sequelize, DataTypes) => {
 
   class Message extends Model {
@@ -16,32 +15,42 @@ module.exports = (sequelize, DataTypes) => {
 
   Message.init({
 
-    name: {
-      type: DataTypes.STRING(50),
+    userId: {
       allowNull: true,
-      validate: {
-        isAlpha: { msg: "El nombre solo debe contener letras" },
-        len: {
-          args: [3, 50],
-          msg: "El nombre debe contener entre 3 a 50 letras"
-        }
+      references: {
+        model: "users",
+        key: "id"
       },
-      defaultValue: "User"
+      onDelete: "CASCADE",
+      type: DataTypes.INTEGER,
+      defaultValue: "null"
     },
-    email: {
-      type: DataTypes.STRING(100),
+    name: {
       allowNull: false,
       validate: {
+        isAlpha: { msg: "The name should only be letters." },
+        len: {
+          args: [3, 50],
+          msg: "The name must have 3 and 50 letters."
+        }
+      },
+      type: DataTypes.STRING(50),
+
+    },
+    email: {
+      allowNull: false,
+      unique: true,
+      validate: {
         notNull: { msg: "Email required" },
-        isEmail: { msg: "Invalid Email format" },
+        isEmail: { msg: "Format email invalid" },
         len: {
           args: [5, 100],
-          msg: "The email only should by max 100 Characters"
+          msg: "The email have must 100 characters max"
         }
-      }
+      },
+      type: DataTypes.STRING(100)
     },
     subject: {
-      type: DataTypes.STRING(100),
       allowNull: false,
       validate: {
         notNull: { msg: "Subject required" },
@@ -49,10 +58,10 @@ module.exports = (sequelize, DataTypes) => {
           args: [10, 100],
           msg: "The message should by max 10 Characters"
         }
-      }
+      },
+      type: DataTypes.STRING(100)
     },
     message: {
-      type: DataTypes.TEXT(256),
       allowNull: false,
       validate: {
         notNull: { msg: "Message required" },
@@ -60,13 +69,18 @@ module.exports = (sequelize, DataTypes) => {
           args: [20, 256],
           msg: "The message should by max 20 Characters"
         }
-      }
+      },
+      type: DataTypes.STRING(1024)
     },
 
   }, {
     sequelize,
     modelName: 'Message',
   });
+
+  Message.associate = function (models) {
+    Message.belongsTo(models.User, { as: "owner", foreignKey: "userId" })
+  };
 
   return Message;
 };

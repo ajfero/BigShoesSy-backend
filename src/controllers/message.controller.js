@@ -23,7 +23,6 @@ const createMessage = async (req, res) => {
         });
 };
 
-
 module.exports = {
     createMessage
 }

@@ -4,6 +4,9 @@ const { logIn, register, logOut, changePassword } = require('../controllers/auth
 const { EmailIsUnique } = require('../middlewares/EmailIsUnique');
 const { validateChangePassword, validateLogin, validateRegister } = require('../validators/auth');
 
+/* POLICIES */
+// const { update } = require("../policies/PostPolicy");
+
 router.post('/register', validateRegister, EmailIsUnique, register) // http://localhost:3000/api/register
 
 router.post('/login', validateLogin, logIn) // http://localhost:3000/api/login

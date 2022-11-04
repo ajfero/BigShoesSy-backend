@@ -3,30 +3,31 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const { promisify } = require("util");
 const { isJwtExpired } = require("jwt-check-expiration");
+
+// Models
 const { User } = require("../database/models/index");
 
-//Auth
 const register = async (req, res) => {
-  //Se obtienen los valores
+  // Get email from body.
   let email = req.body.email;
 
-  //Encriptacion de contraseña
+  // Encrypt password
   const password = await bcrypt.hash(req.body.password, 10);
 
-  //Crear usuario
+  // CREATE new user.
   User.create({
     email,
     password,
-    role: "user",
   }).then((user) => {
     res.status(200).json({ status: 200, msg: "Usuario creado correctamente", user });
   })
     .catch((error) => {
       //Error al crear usuario
       res.status(400).json({ status: 400, msg: error });
-    });
+    })
 };
 
+// Auth
 const logIn = async (req, res) => {
   const { email, password } = req.body;
 

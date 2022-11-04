@@ -121,6 +121,12 @@ npx sequelize-cli model:generate --name user --attributes name:string, password:
 # Messages
 npx sequelize-cli model:generate --name message --attributes name:string,email:string,subject:string,message:string
 
+# carts
+npx sequelize-cli model:generate --name carts --attributes userId:string,email:string,detailCartId:string,status:string
+
+# userRole
+npx sequelize-cli model:generate --name prfile --attributes name:string,email:string,subject:string,message:string
+
 
 ```
 

@@ -24,7 +24,7 @@ const find = async (req, res) => {
   }
 };
 
-//Middlewares
+// Middlewares
 const isExist = async (req, res, next) => {
   try {
     let user = await User.findByPk(req.params.id);

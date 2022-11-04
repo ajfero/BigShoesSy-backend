@@ -1,44 +1,30 @@
 'use strict';
 const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
     }
   }
+
   User.init({
-    name: {
-      type: DataTypes.STRING(50),
-      allowNull: true,
-      validate: {
-        isAlpha: { msg:"El nombre solo debe contener letras" },
-        len: {
-          args: [3,50],
-          msg: "El nombre debe contener entre 3 a 50 letras"
-        }
-      },
-      defaultValue: "Usuario"
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
+
     email: {
       type: DataTypes.STRING(100),
       allowNull: false,
       unique: true,
       validate: {
-        notNull: {msg:"Email requerido"},
-        isEmail: {msg:"Formato de email invalido"},
+        notNull: { msg: "Email required" },
+        isEmail: { msg: "Format email invalid" },
         len: {
-          args: [5,100],
-          msg: "El correo puede contener hasta 100 caracteres maximo"
+          args: [5, 100],
+          msg: "The email have must 100 characters max"
         }
       }
     },
-    role: {
-      type: DataTypes.STRING(20),
-      allowNull: false,
-      defaultValue: "user"
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false
     },
     resetToken: {
       type: DataTypes.STRING(1020),
@@ -48,17 +34,28 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(1020),
       allowNull: true
     }
+
   }, {
     sequelize,
     modelName: 'User',
   });
 
-  //Comprueba rol admin
-  User.isAdmin = function(roles) {
+  User.associate = function (models) {
+    User.belongsTo(models.Profile, { as: "profile", foreignKey: "profileId" });
+    // User.belongsToMany(models.Role, { as: "roles", through: "user_role", foreignKey: "user_id" });
+  };
+
+  // User.hasMany(models.Carts, { as: "carts", foreignKey: "cartsId" });
+  // User.hasMany(models.Messages, { as: "messages", foreignKey: "userId" });
+
+  // Comprueba rol admin
+  User.isAdmin = function (roles) {
     let tmpArray = [];
     roles.forEach(role => tmpArray.push(role.role));
 
     return tmpArray.includes('admin');
   }
+
   return User;
+
 };
