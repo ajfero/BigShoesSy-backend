@@ -80,4 +80,10 @@ const validateRegister = [
     }
 ]
 
-module.exports = { validateEmail, validateNewPassword, validateChangePassword, validateLogin, validateRegister }
+module.exports = {
+    validateEmail,
+    validateNewPassword,
+    validateChangePassword,
+    validateLogin,
+    validateRegister
+}

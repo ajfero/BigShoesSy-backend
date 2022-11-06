@@ -41,12 +41,15 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   User.associate = function (models) {
-    User.belongsTo(models.Profile, { as: "profile", foreignKey: "profileId" });
+
+    User.hasMany(models.Profile, { as: "profile", foreignKey: "userId" });
+    // User.hasMany(models.Carts, { as: "carts", foreignKey: "cartsId" });
+    // User.hasMany(models.Messages, { as: "messages", foreignKey: "userId" });
+
+    // User.belongsTo(models.Profile, { as: "profiles", foreignKey: "usersId" });
     // User.belongsToMany(models.Role, { as: "roles", through: "user_role", foreignKey: "user_id" });
   };
 
-  // User.hasMany(models.Carts, { as: "carts", foreignKey: "cartsId" });
-  // User.hasMany(models.Messages, { as: "messages", foreignKey: "userId" });
 
   // Comprueba rol admin
   User.isAdmin = function (roles) {

@@ -7,27 +7,34 @@ const { isJwtExpired } = require("jwt-check-expiration");
 // Models
 const { User } = require("../database/models/index");
 
-const register = async (req, res) => {
-  // Get email from body.
-  let email = req.body.email;
+// Register a new User.
+const register = async (req, res, next) => {
 
-  // Encrypt password
-  const password = await bcrypt.hash(req.body.password, 10);
+  let email = req.body.email;   // Get email from body.
+  const password = await bcrypt.hash(req.body.password, 10);   // Encrypt password
 
   // CREATE new user.
   User.create({
     email,
     password,
   }).then((user) => {
-    res.status(200).json({ status: 200, msg: "Usuario creado correctamente", user });
+
+    // Create userId into body request
+    const userId = user.dataValues.id
+    req.body.userId = userId
+    next();
+
+    // Return a response create User
+    // res.status(200).json({ status: 200, msg: "Usuario creado correctamente", user });
   })
     .catch((error) => {
       //Error al crear usuario
       res.status(400).json({ status: 400, msg: error });
     })
+
 };
 
-// Auth
+// Authentification
 const logIn = async (req, res) => {
   const { email, password } = req.body;
 
@@ -185,15 +192,18 @@ const isAuthenticated = async (req, res, next) => {
   }
 };
 
+// Clear the cache Cookies
 const logOut = async (req, res, next) => {
   //Eliminar cookie jwt
   res.clearCookie("jwt");
 };
 
 module.exports = {
+
   isAuthenticated,
   register,
   logIn,
   logOut,
   changePassword,
+
 };

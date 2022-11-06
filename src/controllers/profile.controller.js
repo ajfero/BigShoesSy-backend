@@ -1,6 +1,7 @@
 const { Profile } = require('../database/models/index');
-// const sequelize = require('sequelize');
+const sequelize = require('sequelize');
 
+// Get and return a userProfile
 const getProfile = async (req, res) => {
   try {
     let profile = await Profile.findByPk(req.params.id);
@@ -15,14 +16,16 @@ const getProfile = async (req, res) => {
   }
 };
 
-// Create Message from "ContactUs"
-const updateProfile = async (req, res) => {
-  //Se obtienen los valores
-  const { userId, name, lastName, phone, imgUrl, socialRed } = req.body
+// Create after register a newProfile for user.
+const createProfile = async (req, res) => {
 
-  // Crear Message
-  Profile.save({
-    // Asignamos los valores
+  // get values on body request.
+  const { userId, name, lastName, phone, imgUrl, socialRed } = req.body
+  console.log(userId)
+
+  // create a new Profile
+  Profile.create({
+
     userId: userId,
     name: name,
     lastName: lastName,
@@ -31,16 +34,45 @@ const updateProfile = async (req, res) => {
     socialRed: socialRed,
     role: 'user'
 
-  }).then((message) => {
-    res.status(200).json({ status: 200, msg: "Usuario creado correctamente", message });
+  }).then((profile) => {
+    return res.status(200).json({ status: 200, msg: "User & userProfile creado correctamente", profile });
   })
     .catch((error) => {
-      //Error al crear usuario
-      res.status(400).json({ status: 400, msg: error });
+      // Create Profile error.
+      return res.status(400).json({ status: 400, msg: error });
     });
-};
+
+}
+// Update a Profile of user.
+const updateProfile = async (req, res) => {
+
+  // get values on body request.
+  const { userId, name, lastName, phone, imgUrl, socialRed } = req.body
+  console.log(userId)
+
+  // create a new Profile
+  Profile.create({
+
+    userId: userId,
+    name: name,
+    lastName: lastName,
+    phone: phone,
+    imgUrl: imgUrl,
+    socialRed: socialRed,
+    role: 'user'
+
+  }).then((profile) => {
+    return res.status(200).json({ status: 200, msg: "User & userProfile creado correctamente", profile });
+  })
+    .catch((error) => {
+      // Create Profile error.
+      return res.status(400).json({ status: 400, msg: error });
+    });
+
+}
 
 module.exports = {
   getProfile,
+  createProfile,
   updateProfile
 }

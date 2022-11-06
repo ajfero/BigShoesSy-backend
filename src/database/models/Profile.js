@@ -46,19 +46,19 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     phone: {
-      type: DataTypes.STRING(20),
-      allowNull: false,
-      defaultValue: "null"
+      type: DataTypes.INTEGER(20),
+      allowNull: true,
+      defaultValue: null
     },
     imgUrl: {
       type: DataTypes.STRING(256),
       allowNull: true,
-      defaultValue: "picureUser"
+      defaultValue: "imgUrl"
     },
     socialRed: {
       type: DataTypes.STRING(256),
       allowNull: true,
-      defaultValue: "@"
+      defaultValue: null
     },
     role: {
       type: DataTypes.STRING(20),

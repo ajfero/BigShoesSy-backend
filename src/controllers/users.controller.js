@@ -1,6 +1,7 @@
 const { User } = require('../database/models/index');
 const sequelize = require('sequelize');
 
+// Find all Users
 const findAll = async (req, res) => {
   try {
     let users = await User.findAll({ order: sequelize.literal('updatedAt DESC') });
@@ -10,6 +11,7 @@ const findAll = async (req, res) => {
   }
 };
 
+// Find an User
 const find = async (req, res) => {
   try {
     let user = await User.findByPk(req.params.id);
@@ -24,7 +26,7 @@ const find = async (req, res) => {
   }
 };
 
-// Middlewares
+// Verify if user exist
 const isExist = async (req, res, next) => {
   try {
     let user = await User.findByPk(req.params.id);

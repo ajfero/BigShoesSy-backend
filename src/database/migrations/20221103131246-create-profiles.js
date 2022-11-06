@@ -39,7 +39,7 @@ module.exports = {
       },
       socialRed: {
         allowNull: true,
-        type: Sequelize.INTEGER(100)
+        type: Sequelize.STRING(100)
       },
       role: {
         allowNull: false,
