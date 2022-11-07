@@ -20,7 +20,7 @@ const getProfile = async (req, res) => {
 const createProfile = async (req, res) => {
 
   // get values on body request.
-  const { userId, name, lastName, phone, imgUrl, socialRed } = req.body
+  const { userId, name, email, lastName, phone, imgUrl, socialRed } = req.body
   console.log(userId)
 
   // create a new Profile
@@ -28,6 +28,7 @@ const createProfile = async (req, res) => {
 
     userId: userId,
     name: name,
+    email: email,
     lastName: lastName,
     phone: phone,
     imgUrl: imgUrl,
@@ -43,6 +44,7 @@ const createProfile = async (req, res) => {
     });
 
 }
+
 // Update a Profile of user.
 const updateProfile = async (req, res) => {
 

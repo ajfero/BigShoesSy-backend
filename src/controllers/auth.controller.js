@@ -45,7 +45,7 @@ const logIn = async (req, res) => {
     .then((user) => {
       //Email invalido
       if (!user) {
-        res.status(404).json({ msg: "Email invalido" });
+        res.status(415).json({ msg: "Email invalido" });
       }
 
       //Them Email ok
