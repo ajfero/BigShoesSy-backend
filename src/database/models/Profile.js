@@ -1,5 +1,6 @@
 'use strict';
 const { Model } = require('sequelize');
+const User = require('./User');
 
 module.exports = (sequelize, DataTypes) => {
   class Profile extends Model {
@@ -10,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // Define association here
-
+      Profile.belongsTo(models.User, { foreignKey: "id" })
     }
   }
 
@@ -73,6 +74,9 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Profile.associate = function (models) {
+    Profile.hasOne(models.User, { foreignKey: "id" })
+    // Profile.belongsTo(models.User, { as: "profile", foreignKey: "id" })
+
   };
 
   return Profile;

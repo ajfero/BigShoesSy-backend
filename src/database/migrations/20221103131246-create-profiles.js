@@ -23,7 +23,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(50)
       },
-      lastName: {
+      lastname: {
         allowNull: true,
         type: Sequelize.STRING(50)
       },

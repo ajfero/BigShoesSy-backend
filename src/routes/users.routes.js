@@ -3,7 +3,7 @@ const router = express.Router()
 
 /* CONTROLLERS */
 const { isAuthenticated } = require('../controllers/auth.controller');
-const { isExist, findAll, find, } = require('../controllers/users.controller'); // userController
+const { isExist, findAll, find } = require('../controllers/users.controller'); // userController
 
 /* VALIDATOR */
 // const { validateProfile } = require('../validators/profile');

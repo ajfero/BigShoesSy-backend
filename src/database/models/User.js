@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
  */
     static associate(models) {
       // Define association here
-
+      User.hasOne(models.Profile, { foreignKey: "userId" })
     }
   }
 
@@ -48,7 +48,8 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   User.associate = function (models) {
-
+    // User.hasOne(models.Profile, { as: "profile", foreignKey: "userId" });
+    // User.belongsTo(models.Profile, { as: "user", foreignKey: "userId" });
   };
 
 
@@ -64,11 +65,13 @@ module.exports = (sequelize, DataTypes) => {
 
 };
 
+//testready
 
+// test
 
 // User.hasOne(models.Profile);
 // User.belongsTo(models.Profile);
-// User.hasOne(models.Profile, { as: "profile", foreignKey: "userId" });
+
 // User.belongsTo(models.Profile, { as: "user", foreignKey: "id" });
 // User.hasMany(models.Profile, { as: "profile", foreignKey: "userId" });
 // User.hasMany(models.Carts, { as: "carts", foreignKey: "cartsId" });

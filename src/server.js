@@ -19,7 +19,7 @@ app.use(json())
 // Routes
 app.use("/api", authRoute);
 app.use("/api/users", usersRoute);
-app.use("/api/user", profileRoute);
+app.use("/api/user/profile", profileRoute);
 app.use("/api", messageRoute);
 
 //Elimina el cache, para evitar errores con Logout
