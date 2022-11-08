@@ -9,7 +9,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      // Define association here
+
     }
   }
 
@@ -18,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     userId: {
       type: DataTypes.INTEGER,
       references: {
-        model: "users",
+        model: 'users',
         key: "id"
       },
       onDelete: "CASCADE",
@@ -72,8 +73,13 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Profile.associate = function (models) {
-    Profile.belongsTo(models.User, { as: "user", foreignKey: "userId" })
   };
 
   return Profile;
 };
+
+  // Profile.belongsTo(models.User, { as: "user", foreignKey: "profileId" })
+  // Profile.hasOne(models.User);
+  // Profile.belongsTo(models.User);
+  // Profile.hasOne(models.User, { as: "user", foreignKey: "id" })
+  // Profile.belongsTo(models.User, { as: "user", foreignKey: "profileId" })

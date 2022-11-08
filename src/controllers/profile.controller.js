@@ -1,10 +1,27 @@
 const { Profile } = require('../database/models/index');
 const sequelize = require('sequelize');
 
+// Get and return all usersProfile
+const getAllProfile = async (req, res) => {
+  try {
+    let profile = await Profile.findAll({ order: sequelize.literal('updatedAt DESC') });
+    return res.json(profile)
+  } catch (error) {
+    return res.status(400).json({ status: 400, error })
+  }
+};
+
 // Get and return a userProfile
 const getProfile = async (req, res) => {
+
   try {
-    let profile = await Profile.findByPk(req.params.id);
+    // let profile = await Profile.findByPk(req.params.id);
+
+    let profile = await Profile.findOne({
+      where: {
+        userId: req.params.id
+      },
+    });
 
     if (profile) {
       return res.status(200).json(profile)
@@ -14,6 +31,7 @@ const getProfile = async (req, res) => {
   } catch (error) {
     return res.status(400).json({ status: 400, error })
   }
+
 };
 
 // Create after register a newProfile for user.
@@ -35,7 +53,7 @@ const createProfile = async (req, res) => {
     role: 'user'
 
   }).then((profile) => {
-    return res.status(200).json({ status: 200, msg: "User & userProfile creado correctamente", profile });
+    return res.status(200).json({ status: 200, msg: "Created User Successeful!!", profile });
   })
     .catch((error) => {
       // Create Profile error.
@@ -43,6 +61,7 @@ const createProfile = async (req, res) => {
     });
 
 }
+
 // Update a Profile of user.
 const updateProfile = async (req, res) => {
 
@@ -72,7 +91,10 @@ const updateProfile = async (req, res) => {
 }
 
 module.exports = {
+
   getProfile,
   createProfile,
-  updateProfile
+  updateProfile,
+  getAllProfile
+
 }

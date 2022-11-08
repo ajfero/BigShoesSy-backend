@@ -13,6 +13,7 @@ const findAll = async (req, res) => {
 
 // Find an User
 const find = async (req, res) => {
+
   try {
     let user = await User.findByPk(req.params.id);
 
@@ -24,6 +25,7 @@ const find = async (req, res) => {
   } catch (error) {
     return res.status(400).json({ status: 400, error })
   }
+
 };
 
 // Verify if user exist
@@ -42,8 +44,28 @@ const isExist = async (req, res, next) => {
   }
 };
 
+// // Find an User
+// const findProfile = async (req, res) => {
+
+//   try {
+//     let user = await User.findByPk(req.params.id);
+
+//     if (user) {
+//       return res.status(200).json(user)
+//     } else {
+//       return res.status(404).json({ status: 404, msg: "usuario no encontrada" })
+//     }
+//   } catch (error) {
+//     return res.status(400).json({ status: 400, error })
+//   }
+
+// };
+
 module.exports = {
+
   findAll,
   find,
-  isExist
+  isExist,
+  // findProfile
+
 }
