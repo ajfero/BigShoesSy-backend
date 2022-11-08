@@ -36,16 +36,6 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    email: {
-      type: DataTypes.STRING(100),
-      allowNull: false,
-      unique: true,
-      references: {
-        model: "users",
-        key: "email"
-      },
-      onDelete: "CASCADE"
-    },
     lastname: {
       type: DataTypes.STRING(50),
       allowNull: true,

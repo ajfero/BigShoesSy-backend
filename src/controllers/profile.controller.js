@@ -82,7 +82,7 @@ const updateProfile = async (req, res) => {
 
   // get values on body request.
   const { userId, name, lastname, phone, imgUrl, socialRed } = req.body
-  console.log(userId)
+  // console.log(userId)
 
   let profile = await Profile.findOne({
     where: {
