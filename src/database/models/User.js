@@ -3,7 +3,14 @@ const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
+    /**
+ * Helper method for defining associations.
+ * This method is not a part of Sequelize lifecycle.
+ * The `models/index` file will call this method automatically.
+ */
     static associate(models) {
+      // Define association here
+      User.hasOne(models.Profile, { foreignKey: "userId" })
     }
   }
 
@@ -41,13 +48,8 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   User.associate = function (models) {
-
-    User.hasMany(models.Profile, { as: "profile", foreignKey: "userId" });
-    // User.hasMany(models.Carts, { as: "carts", foreignKey: "cartsId" });
-    // User.hasMany(models.Messages, { as: "messages", foreignKey: "userId" });
-
-    // User.belongsTo(models.Profile, { as: "profiles", foreignKey: "usersId" });
-    // User.belongsToMany(models.Role, { as: "roles", through: "user_role", foreignKey: "user_id" });
+    // User.hasOne(models.Profile, { as: "profile", foreignKey: "userId" });
+    // User.belongsTo(models.Profile, { as: "user", foreignKey: "userId" });
   };
 
 
@@ -62,3 +64,17 @@ module.exports = (sequelize, DataTypes) => {
   return User;
 
 };
+
+//testready
+
+// test
+
+// User.hasOne(models.Profile);
+// User.belongsTo(models.Profile);
+
+// User.belongsTo(models.Profile, { as: "user", foreignKey: "id" });
+// User.hasMany(models.Profile, { as: "profile", foreignKey: "userId" });
+// User.hasMany(models.Carts, { as: "carts", foreignKey: "cartsId" });
+// User.hasMany(models.Messages, { as: "messages", foreignKey: "userId" });
+// User.belongsTo(models.Profile, { as: "profiles", foreignKey: "usersId" });
+// User.belongsToMany(models.Role, { as: "roles", through: "user_role", foreignKey: "user_id" });

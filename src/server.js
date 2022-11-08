@@ -7,6 +7,7 @@ const app = express();
 //Requires to routes
 const authRoute = require("./routes/auth.routes");
 const usersRoute = require("./routes/users.routes");
+const profileRoute = require("./routes/profile.routes");
 const messageRoute = require("./routes/message.routes");
 
 //Middleware
@@ -16,8 +17,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(json())
 
 // Routes
-app.use("/api/users", usersRoute);
 app.use("/api", authRoute);
+app.use("/api/users", usersRoute);
+app.use("/api/user/profile", profileRoute);
 app.use("/api", messageRoute);
 
 //Elimina el cache, para evitar errores con Logout

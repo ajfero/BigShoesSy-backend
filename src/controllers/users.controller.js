@@ -13,6 +13,7 @@ const findAll = async (req, res) => {
 
 // Find an User
 const find = async (req, res) => {
+
   try {
     let user = await User.findByPk(req.params.id);
 
@@ -24,6 +25,7 @@ const find = async (req, res) => {
   } catch (error) {
     return res.status(400).json({ status: 400, error })
   }
+
 };
 
 // Verify if user exist
@@ -43,7 +45,9 @@ const isExist = async (req, res, next) => {
 };
 
 module.exports = {
+
   findAll,
   find,
-  isExist
+  isExist,
+
 }
