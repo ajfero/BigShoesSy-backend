@@ -108,8 +108,25 @@ const updateProfile = async (req, res) => {
     });
 }
 
+// Verify if Profile exist
+const isExistProfile = async (req, res, next) => {
+  try {
+    let profile = await Profile.findByPk(req.params.id);
+
+    if (profile) {
+      req.profile = profile.dataValues
+      return next()
+    } else {
+      return res.status(404).json({ status: 404, msg: "usuario no encontrada" })
+    }
+  } catch (error) {
+    return res.status(400).json({ status: 400, error })
+  }
+};
+
 module.exports = {
 
+  isExistProfile,
   createProfile,
   getAllProfile,
   getProfile,
