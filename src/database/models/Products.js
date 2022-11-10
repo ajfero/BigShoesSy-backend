@@ -2,29 +2,21 @@
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class Profile extends Model {
+  class Products extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // Define association here
-      Profile.belongsTo(models.User, { foreignKey: "id" }) // asociaty for reference User
+      // define association here
+      // Products.belongsToMany(models.Cart, { foreignKey: "productsId" })
     }
   }
 
-  Profile.init({
+  Products.init({
 
-    userId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'users',
-        key: "id"
-      },
-      onDelete: "CASCADE",
-    },
-    name: {
+    brand: {
       type: DataTypes.STRING(50),
       allowNull: false,
       validate: {
@@ -35,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    lastname: {
+    colorway: {
       type: DataTypes.STRING(50),
       allowNull: true,
       validate: {
@@ -46,35 +38,27 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    phone: {
+    imageUrl: {
       type: DataTypes.INTEGER(20),
       allowNull: true,
       defaultValue: null
     },
-    imgUrl: {
+    styleId: {
       type: DataTypes.STRING(256),
       allowNull: true,
       defaultValue: "imgUrl"
     },
-    socialRed: {
-      type: DataTypes.STRING(256),
-      allowNull: true,
-      defaultValue: null
-    },
-    role: {
-      type: DataTypes.STRING(20),
-      allowNull: false,
-      defaultValue: "user"
-    }
 
   }, {
     sequelize,
-    modelName: 'Profile',
+    modelName: 'products',
   });
 
-  Profile.associate = function (models) {
-    Profile.hasOne(models.User, { foreignKey: "id" }) // asociaty for get User
+  Products.associate = function (models) {
+    // Products.hasMany(models.DetailCart, { foreignKey: "id" }) // asociaty for get User
+    // Cart.belongsTo(models.Cart, { as: "cart", foreignKey: "id" })
   };
 
-  return Profile;
+  return Products;
+
 };

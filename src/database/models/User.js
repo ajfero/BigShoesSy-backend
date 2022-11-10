@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
  */
     static associate(models) {
       // Define association here
-      User.hasOne(models.Profile, { foreignKey: "userId" })
+      User.belongsTo(models.Profile, { as: "user", foreignKey: "userId" });
+      User.belongsTo(models.Cart, { as: "user", foreignKey: "cartId" });
     }
   }
 
@@ -48,8 +49,8 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   User.associate = function (models) {
-    // User.hasOne(models.Profile, { as: "profile", foreignKey: "userId" });
-    // User.belongsTo(models.Profile, { as: "user", foreignKey: "userId" });
+    // User.hasOne(models.Cart, { foreignKey: "userId" });
+    // User.hasOne(models.Profile, { foreignKey: "userId" }) // asociaty for get User
   };
 
 
@@ -64,17 +65,3 @@ module.exports = (sequelize, DataTypes) => {
   return User;
 
 };
-
-//testready
-
-// test
-
-// User.hasOne(models.Profile);
-// User.belongsTo(models.Profile);
-
-// User.belongsTo(models.Profile, { as: "user", foreignKey: "id" });
-// User.hasMany(models.Profile, { as: "profile", foreignKey: "userId" });
-// User.hasMany(models.Carts, { as: "carts", foreignKey: "cartsId" });
-// User.hasMany(models.Messages, { as: "messages", foreignKey: "userId" });
-// User.belongsTo(models.Profile, { as: "profiles", foreignKey: "usersId" });
-// User.belongsToMany(models.Role, { as: "roles", through: "user_role", foreignKey: "user_id" });

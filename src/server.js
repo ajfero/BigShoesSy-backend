@@ -9,6 +9,7 @@ const authRoute = require("./routes/auth.routes");
 const usersRoute = require("./routes/users.routes");
 const profileRoute = require("./routes/profile.routes");
 const messageRoute = require("./routes/message.routes");
+const cartRoute = require("./routes/carts.routes");
 
 //Middleware
 app.use(cors())
@@ -20,6 +21,7 @@ app.use(json())
 app.use("/api", authRoute);
 app.use("/api/users", usersRoute);
 app.use("/api/user/profile", profileRoute);
+app.use("/api/users", cartRoute);
 app.use("/api", messageRoute);
 
 //Elimina el cache, para evitar errores con Logout
