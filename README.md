@@ -158,11 +158,23 @@ messages
 	name -> user
 	email -> email
 	subject -> title
-	message 
+	message
 
 Models
-	Users 
+	Users
 		name
 		email
 		password
 		c_password
+
+# endPoints
+(post) /register               "return user"
+(post) /login                  "return userData + Token"
+(get) /logout                  "return 200"
+(post) /change-password        "return 200"
+
+
+(post) /register               "return user"
+(post) /login                  "return userData + Token"
+(get) /logout                  "return 200"
+(post) /change-password        "return 200"

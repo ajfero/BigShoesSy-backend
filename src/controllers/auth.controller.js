@@ -115,10 +115,7 @@ const changePassword = async (req, res) => {
   console.log(jwt.verify(jwt_cookie, process.env.ACCESS_TOKEN_SECRET));
   //Buscar usuario por resetToken
   try {
-    const verifyResult = jwt.verify(
-      jwt_cookie,
-      process.env.ACCESS_TOKEN_SECRET
-    );
+    const verifyResult = jwt.verify(jwt_cookie, process.env.ACCESS_TOKEN_SECRET);
     const { email } = verifyResult;
     user = await User.findOne({
       where: {
