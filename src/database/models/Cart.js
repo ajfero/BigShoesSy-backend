@@ -27,15 +27,6 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: "CASCADE",
       type: DataTypes.INTEGER,
     },
-    detailsCartId: {
-      allowNull: true,
-      references: {
-        model: "detailsCart",
-        key: "id"
-      },
-      onDelete: "CASCADE",
-      type: DataTypes.INTEGER,
-    },
     status: {
       allowNull: false,
       type: DataTypes.TEXT(1000)
