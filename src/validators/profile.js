@@ -1,6 +1,7 @@
 const { check } = require('express-validator');
 const { validateResult } = require('../helpers/validateHelper');
 
+// Profile validation rules
 const validateProfile = [
 
     check('name')

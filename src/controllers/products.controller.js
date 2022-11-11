@@ -1,6 +1,7 @@
 const { DetailCart } = require('../database/models/index');
 const sequelize = require('sequelize');
 
+// todo: CRUD of products
 // Create a Cart and DetailCart
 // const createProducts = async (req, res) => {
 

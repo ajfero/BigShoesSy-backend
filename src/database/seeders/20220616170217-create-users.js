@@ -1,6 +1,9 @@
 'use strict';
 
+// Models
 const { User } = require('../models/index');
+
+// libreries
 const bcrypt = require('bcryptjs');
 
 module.exports = {
@@ -13,6 +16,7 @@ module.exports = {
         email: "ejemplo@syloper.com",
         role: 'user'
       }),
+
       User.create({
         name: "admin",
         password: bcrypt.hashSync("hola", 10),

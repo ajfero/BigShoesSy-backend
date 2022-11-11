@@ -78,6 +78,7 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Message',
   });
 
+  // Define association here
   Message.associate = function (models) {
     Message.belongsTo(models.User, { as: "owner", foreignKey: "userId" })
   };

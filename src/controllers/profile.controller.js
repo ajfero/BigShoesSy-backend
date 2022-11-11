@@ -4,11 +4,11 @@ const sequelize = require('sequelize');
 // Create after register a newProfile for an user.
 const createProfile = async (req, res) => {
 
-  // get values on body request.
+  // Get values on body request.
   const { userId, name, lastname, phone, imgUrl, socialRed } = req.body
   console.log(userId)
 
-  // create a new Profile
+  // Create a new Profile
   Profile.create({
 
     userId: userId,
@@ -23,7 +23,6 @@ const createProfile = async (req, res) => {
     return res.status(200).json({ status: 200, msg: "Created User Successeful!!", profile });
   })
     .catch((error) => {
-      // Create Profile error.
       return res.status(400).json({ status: 400, msg: error });
     });
 
@@ -31,12 +30,15 @@ const createProfile = async (req, res) => {
 
 // Get and return all usersProfiles
 const getAllProfile = async (req, res) => {
+
   try {
     let profile = await Profile.findAll({ order: sequelize.literal('updatedAt DESC') });
     return res.json(profile)
+
   } catch (error) {
     return res.status(400).json({ status: 400, error })
   }
+
 };
 
 // Get and return an userProfile
@@ -110,7 +112,9 @@ const updateProfile = async (req, res) => {
 
 // Verify if Profile exist
 const isExistProfile = async (req, res, next) => {
+
   try {
+
     let profile = await Profile.findByPk(req.params.id);
 
     if (profile) {
@@ -122,6 +126,7 @@ const isExistProfile = async (req, res, next) => {
   } catch (error) {
     return res.status(400).json({ status: 400, error })
   }
+
 };
 
 module.exports = {

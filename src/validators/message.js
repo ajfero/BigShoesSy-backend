@@ -1,6 +1,7 @@
 const { check } = require('express-validator');
 const { validateResult } = require('../helpers/validateHelper');
 
+// Messages validation rules
 const validateMessage = [
 
     check('name')

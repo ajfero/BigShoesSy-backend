@@ -28,7 +28,7 @@ const find = async (req, res) => {
 
 };
 
-// Verify if user exist
+// Verify if User exist
 const isExist = async (req, res, next) => {
   try {
     let user = await User.findByPk(req.params.id);
@@ -44,10 +44,64 @@ const isExist = async (req, res, next) => {
   }
 };
 
+// Update an user exist.
+const updateUser = async (req, res) => {
+
+  // get values on body request.
+  const { email } = req.body
+  // console.log(userId)
+
+  let user = await User.findOne({
+    where: {
+      id: req.params.id
+    }
+  });
+
+  // create a new Profile
+  user.set({
+    email: email,
+  })
+  user.save().then((user) => {
+    return res.status(200).json({ status: 200, msg: "Update User Successeful!!", user });
+  })
+    .catch((error) => {
+      // Create Profile error.
+      return res.status(400).json({ status: 400, msg: error });
+    });
+}
+
+// Delete an user exist.
+const deleteUser = async (req, res) => {
+
+  // get values on body request.
+  const { email } = req.body
+  const { id } = req.params
+  // console.log(userId)
+
+  let user = await User.findOne({
+    where: {
+      id: id,
+      email: email
+    }
+  });
+
+  // create a new Profile
+  user.destroy()
+  user.save().then(() => {
+    return res.status(200).json({ status: 200, msg: "Delete User Successeful!!" });
+  })
+    .catch((error) => {
+      // Create Profile error.
+      return res.status(400).json({ status: 400, msg: error });
+    });
+}
+
 module.exports = {
 
   findAll,
   find,
   isExist,
+  updateUser,
+  deleteUser
 
 }

@@ -10,9 +10,13 @@ npm install
 
 # Create tables
 npx sequelize-cli db:migrate
+sequelize db:migrate
+sequelize db:migrate:undo
 
 # Created Seeders queries -> New data harcoded.
-sequelize db:migrate:undo
+npx sequelize-cli db:seed --name products
+sequelize db:seed
+sequelize db:seed:undo
 
 # Serve the App.
 npm run start

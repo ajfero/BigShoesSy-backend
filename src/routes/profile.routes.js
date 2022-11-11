@@ -8,13 +8,12 @@ const { getAllProfile, getProfile, updateProfile, isExistProfile } = require('..
 /* VALIDATOR */
 // const { validateProfile } = require('../validators/profile');
 
-/* CRUD PROFILE USER */
-router.get('/', isAuthenticated, getAllProfile); // READ one user. http://localhost:3000/api/user/profile
-router.get('/:id', isExistProfile, isAuthenticated, getProfile); // READ one user. http://localhost:3000/api/user/profile/:id
-router.patch('/:id', isExistProfile, isAuthenticated, updateProfile); // UPDATE one user. http://localhost:3000/api/user/profile/:id
+/* ROUTES --> CRUD PROFILE */
+router.get('/', isAuthenticated, getAllProfile); // GET --> all Profiles. http://localhost:3000/api/user/profile
+router.get('/:id', isExistProfile, isAuthenticated, getProfile); // GET --> one Profile. http://localhost:3000/api/user/profile/:id
+router.patch('/:id', isExistProfile, isAuthenticated, updateProfile); // PATCH --> update a Profile. http://localhost:3000/api/user/profile/:id
 
 /* OTHERS ENDPOINT */
-// router.post('/', isExist, isAuthenticat0ed, create); // CREATE one user. http://localhost:3000/api/users/
 // router.get('/:id', isExist, isAuthenticated, find); // READ one user. http://localhost:3000/api/users/:id
 // router.delete('/:id', isExist, isAuthenticated, delete); // DELETE one user. http://localhost:3000/api/users/:id
 

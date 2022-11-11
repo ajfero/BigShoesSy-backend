@@ -1,11 +1,12 @@
 'use strict';
 
+// Models
 const { Product } = require('../models/index');
-const bcrypt = require('bcryptjs');
 
 module.exports = {
   async up(queryInterface, Sequelize) {
 
+    // array of Product for seederProducts
     const arrayProducts = [
       {
         "id": "c116b14f-8f00-454b-915c-f3f51c7a297c",
@@ -808,8 +809,8 @@ module.exports = {
         "year": 2020
       }
     ]
-    // console.log(arrayProducts)
 
+    // Iter in array of oproduct for create a many products
     const productPromises = arrayProducts.map((item) => {
       return Product.create({
         productId: item.id,
@@ -821,7 +822,6 @@ module.exports = {
         title: item.title
       })
     })
-    console.log(productPromises)
 
     return Promise.all(
       productPromises

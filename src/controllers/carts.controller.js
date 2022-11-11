@@ -1,39 +1,48 @@
-const { User, Cart } = require('../database/models/index');
 const sequelize = require('sequelize');
-const DetailsCart = require('../database/models/DetailsCart');
 
-// Create a Cart and DetailCart
+// Models
+const { User, Cart } = require('../database/models/index');
+const { DetailsCart } = require('../database/models/DetailsCart');
+
+// Create a Cart
 const createCart = async (req, res, next) => {
+
   try {
+
     let userId = req.params.id
     const cart = await Cart.findOne({ where: { userId: userId } });
 
+    // create cart if  isn't exist.
     if (!cart) {
-      // get values on body request.
+
+      // Get values on body request.
       const { status } = req.body
       Cart.create({
         userId: userId,
         status: status
       }).then((cart) => {
-        // get cartId into body request
+
+        // Get cartId of the database and into in the request
         const cartId = cart.dataValues.id
         console.log(cartId)
         req.body.cartId = cartId
 
-        // return res.status(200).json({ status: 200, msg: "Create Cart Successeful!!", cart });
+        // return res.status(200).json({ status: 200, msg: "Create Cart Successeful!!", cart }); // test of create card
         next()
 
       })
         .catch((error) => {
-          // Create Cart error.
           return res.status(400).json({ status: 400, msg: error });
         });
 
+      // update cart if exist.
     } else {
+
       const cartId = cart.dataValues.id
       console.log(cartId)
       req.body.cartId = cartId
       console.log('Cart found! updating...');
+
       // return res.status(404).json({ status: 404, msg: "Carrrito no actualizado" })
       next()
 
@@ -43,6 +52,17 @@ const createCart = async (req, res, next) => {
   }
 
 }
+
+// Get a Cart
+
+
+module.exports = {
+
+  createCart,
+  // getCart
+
+}
+
 
 // Update a Profile of user.
 // const updateCart = async (req, res) => {
@@ -120,11 +140,3 @@ const createCart = async (req, res, next) => {
 //   }
 
 // };
-
-module.exports = {
-
-  createCart,
-  // updateCart,
-  // getCart
-
-}

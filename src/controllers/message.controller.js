@@ -3,12 +3,13 @@ const sequelize = require('sequelize');
 
 // Create Message from "ContactUs"
 const createMessage = async (req, res) => {
-    //Se obtienen los valores
+
+    // get values of body
     const { name, email, subject, message } = req.body
 
-    // Crear Message
+    // Create Message
     Message.create({
-        // Asignamos los valores
+        // Assign values to messages
         name: name,
         email: email,
         subject: subject,
@@ -18,9 +19,9 @@ const createMessage = async (req, res) => {
         res.status(200).json({ status: 200, msg: "Usuario creado correctamente", message });
     })
         .catch((error) => {
-            //Error al crear usuario
             res.status(400).json({ status: 400, msg: error });
         });
+
 };
 
 module.exports = {

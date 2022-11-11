@@ -4,10 +4,10 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
- * Helper method for defining associations.
- * This method is not a part of Sequelize lifecycle.
- * The `models/index` file will call this method automatically.
- */
+    * Helper method for defining associations.
+    * This method is not a part of Sequelize lifecycle.
+    * The `models/index` file will call this method automatically.
+    */
     static associate(models) {
       // Define association here
       User.belongsTo(models.Profile, { as: "user", foreignKey: "userId" });
@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
 
+  // initialize model
   User.init({
 
     email: {
@@ -48,13 +49,13 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'User',
   });
 
+  // Define association here
   User.associate = function (models) {
     // User.hasOne(models.Cart, { foreignKey: "userId" });
     // User.hasOne(models.Profile, { foreignKey: "userId" }) // asociaty for get User
   };
 
-
-  // Comprueba rol admin
+  // Verify role of User
   User.isAdmin = function (roles) {
     let tmpArray = [];
     roles.forEach(role => tmpArray.push(role.role));

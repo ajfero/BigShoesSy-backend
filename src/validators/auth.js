@@ -1,6 +1,7 @@
 const { check } = require('express-validator');
 const { validateResult } = require('../helpers/validateHelper');
 
+// Email validation rules
 const validateEmail = [
 
     check('email')
@@ -14,6 +15,7 @@ const validateEmail = [
     }
 ]
 
+// Password validation rules
 const validateNewPassword = [
 
     check('newPassword')
@@ -25,6 +27,7 @@ const validateNewPassword = [
     }
 ]
 
+// ChangePassword validation rules
 const validateChangePassword = [
 
     check('password')
@@ -42,6 +45,7 @@ const validateChangePassword = [
     }
 ]
 
+// SignIn validation rules
 const validateLogin = [
 
     check('email')
@@ -59,6 +63,7 @@ const validateLogin = [
     }
 ]
 
+// Register validation rules
 const validateRegister = [
 
     check('email')

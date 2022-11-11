@@ -13,7 +13,7 @@ const register = async (req, res, next) => {
   let email = req.body.email;   // Get email from body.
   const password = await bcrypt.hash(req.body.password, 10);   // Encrypt password
 
-  // CREATE new user.
+  // CREATE new User.
   User.create({
     email,
     password,
@@ -28,17 +28,18 @@ const register = async (req, res, next) => {
     // res.status(200).json({ status: 200, msg: "Usuario creado correctamente", user });
   })
     .catch((error) => {
-      //Error al crear usuario
+      // Creater User Error
       res.status(400).json({ status: 400, msg: error });
     })
 
 };
 
-// Authentification
+// Sign In the app
 const logIn = async (req, res) => {
+
   const { email, password } = req.body;
 
-  //Comprobar email en DB
+  // Very the email in the entity User
   User.findOne({
     where: { email: email },
   })
@@ -99,8 +100,6 @@ const logIn = async (req, res) => {
       }
 
     })
-
-    //Login Error
     .catch((error) => {
       //Fallo al buscar el email en la base de datos
       return res.status(400).json('email db error', error);
@@ -109,22 +108,27 @@ const logIn = async (req, res) => {
 };
 
 const changePassword = async (req, res) => {
+
   let { password } = req.body;
-  password = await bcrypt.hash(password, 10);
   const jwt_cookie = req.cookies.jwt;
-  console.log(jwt.verify(jwt_cookie, process.env.ACCESS_TOKEN_SECRET));
-  //Buscar usuario por resetToken
+  password = await bcrypt.hash(password, 10);
+  // console.log(jwt.verify(jwt_cookie, process.env.ACCESS_TOKEN_SECRET));
+
+  // serach user by resetToken
   try {
+    // received tokenCookie and the accessToken
     const verifyResult = jwt.verify(jwt_cookie, process.env.ACCESS_TOKEN_SECRET);
+
     const { email } = verifyResult;
     user = await User.findOne({
       where: {
         email: email,
       },
     });
+
     if (user) {
       try {
-        //Si se encontro, cambiar clave en la DB
+        // if user Exist, change the password in DB.
         await User.update(
           { password: password },
           {
@@ -139,6 +143,7 @@ const changePassword = async (req, res) => {
       return res
         .status(201)
         .json({ status: "201", msg: "Contraseña cambiada correctamente" });
+
     } else {
       return res
         .status(400)
@@ -147,11 +152,12 @@ const changePassword = async (req, res) => {
   } catch (error) {
     return res.status(401).json({ msg: "Algo ha fallado jwt!", error });
   }
+
 };
 
 const isAuthenticated = async (req, res, next) => {
 
-  //Comprobar si existe el token y si esta expirado
+  // Comprobar si existe el token y si esta expirado
   try {
     //Si en el header tenemos la authoization
     if (req.headers['authorization'] && !isJwtExpired(req.headers['authorization'])) {
