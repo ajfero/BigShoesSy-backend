@@ -2,7 +2,7 @@
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class Products extends Model {
+  class Product extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -14,51 +14,50 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
 
-  Products.init({
+  Product.init({
 
+    productId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     brand: {
       type: DataTypes.STRING(50),
       allowNull: false,
-      validate: {
-        isAlpha: { msg: "The name should only be letters." },
-        len: {
-          args: [3, 50],
-          msg: "The name must have 3 and 50 letters."
-        }
-      }
     },
     colorway: {
       type: DataTypes.STRING(50),
       allowNull: true,
-      validate: {
-        isAlpha: { msg: "The Lastname should only be letters" },
-        len: {
-          args: [3, 50],
-          msg: "The Lastname must have 3 and 50 letters.s"
-        }
-      }
+
     },
     imageUrl: {
-      type: DataTypes.INTEGER(20),
+      type: DataTypes.STRING,
       allowNull: true,
-      defaultValue: null
+      defaultValue: "imgUrl"
+    },
+    retailPrice: {
+      type: DataTypes.INTEGER(50),
+      allowNull: true,
     },
     styleId: {
       type: DataTypes.STRING(256),
       allowNull: true,
-      defaultValue: "imgUrl"
+    },
+    title: {
+      type: DataTypes.STRING(256),
+      allowNull: true,
     },
 
   }, {
     sequelize,
-    modelName: 'products',
+    modelName: 'Product',
   });
 
-  Products.associate = function (models) {
+  Product.associate = function (models) {
     // Products.hasMany(models.DetailCart, { foreignKey: "id" }) // asociaty for get User
     // Cart.belongsTo(models.Cart, { as: "cart", foreignKey: "id" })
   };
 
-  return Products;
+  return Product;
 
 };
+

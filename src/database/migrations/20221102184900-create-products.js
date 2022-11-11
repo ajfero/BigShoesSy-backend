@@ -12,11 +12,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       productId: {
-        allowNull: true,
+        allowNull: false,
+        unique: true,
         type: Sequelize.STRING
       },
       brand: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING
       },
       colorway: {
@@ -27,8 +28,16 @@ module.exports = {
         allowNull: true,
         type: Sequelize.STRING
       },
+      retailPrice: {
+        allowNull: true,
+        type: Sequelize.STRING
+      },
       styleId: {
         allowNull: true,
+        type: Sequelize.STRING
+      },
+      title: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {
