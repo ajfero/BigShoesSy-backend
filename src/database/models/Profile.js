@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // Define association here
-      Profile.belongsTo(models.User, { foreignKey: "id" }) // asociaty for reference User
+      // Profile.belongsTo(models.User, { foreignKey: "userId" }) // asociaty for reference User
     }
   }
 
@@ -74,7 +74,9 @@ module.exports = (sequelize, DataTypes) => {
 
   // Define association here
   Profile.associate = function (models) {
-    Profile.hasOne(models.User, { foreignKey: "id" }) // asociaty for get User
+    Profile.belongsTo(models.User, { foreignKey: "userId" })
+    // Profile.hasOne(models.User, { foreignKey: "id" }) // asociaty for get User
+
   };
 
   return Profile;

@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     */
     static associate(models) {
       // Define association here
-      User.belongsTo(models.Profile, { as: "user", foreignKey: "userId" });
-      User.belongsTo(models.Cart, { as: "user", foreignKey: "cartId" });
+      User.belongsTo(models.Profile, { foreignKey: "userId" });
+      // User.belongsTo(models.Cart, { as: "user", foreignKey: "cartId" });
     }
   }
 
@@ -51,8 +51,8 @@ module.exports = (sequelize, DataTypes) => {
 
   // Define association here
   User.associate = function (models) {
+    User.hasOne(models.Profile, { foreignKey: "userId" }) // asociaty for get User
     // User.hasOne(models.Cart, { foreignKey: "userId" });
-    // User.hasOne(models.Profile, { foreignKey: "userId" }) // asociaty for get User
   };
 
   // Verify role of User

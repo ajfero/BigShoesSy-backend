@@ -45,11 +45,14 @@ const getAllProfile = async (req, res) => {
 const getProfile = async (req, res) => {
 
   try {
-    // let profile = await Profile.findByPk(req.params.id);
+
+    let userId = req.params.id
+    let id = req.params.id
+    console.log(userId, id)
 
     let profile = await Profile.findOne({
       where: {
-        userId: req.params.id
+        userId: userId
       },
       attributes: [
         'id',
@@ -63,13 +66,14 @@ const getProfile = async (req, res) => {
       include: {
         model: User,
         where: {
-          id: req.params.id
+          id: id
         },
       },
     });
 
     if (profile) {
       return res.status(200).json(profile)
+
     } else {
       return res.status(404).json({ status: 404, msg: "Profile not fount" })
     }
@@ -121,7 +125,7 @@ const isExistProfile = async (req, res, next) => {
       req.profile = profile.dataValues
       return next()
     } else {
-      return res.status(404).json({ status: 404, msg: "usuario no encontrada" })
+      return res.status(404).json({ status: 404, msg: "Profile not Found" })
     }
   } catch (error) {
     return res.status(400).json({ status: 400, error })
