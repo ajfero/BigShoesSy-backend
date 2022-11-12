@@ -6,11 +6,13 @@ const createDetailsCart = async (req, res) => {
 
   // Get values on body request.
   const arrayDataProducts = req.body.arrayProducts
-  const cartId = req.body.cartId // this cardId is anited by the cartsController
+  const cartId = req.body.cartId // this cartId is anited by the cartsController
+  console.log(arrayDataProducts)
 
   // Verify and create if the array is full
   if (arrayDataProducts && arrayDataProducts.length) {
     arrayDataProducts.map((item) => {
+      console.log(item.productsId)
 
       // Create a new DetailsCart
       DetailsCart.create({

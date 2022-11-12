@@ -29,12 +29,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     productsId: {
       allowNull: false,
-      references: {
-        model: "products",
-        key: "id"
-      },
       onDelete: "CASCADE",
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
     },
     quantityProduct: {
       allowNull: false,

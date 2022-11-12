@@ -27,7 +27,7 @@ const createCart = async (req, res, next) => {
         console.log(cartId)
         req.body.cartId = cartId
 
-        // return res.status(200).json({ status: 200, msg: "Create Cart Successeful!!", cart }); // test of create card
+        // return res.status(200).json({ status: 200, msg: "Create Cart Successeful!!", cart }); // test of create cart
         next()
 
       })
@@ -38,13 +38,22 @@ const createCart = async (req, res, next) => {
       // update cart if exist.
     } else {
 
+      // const { status } = req.body
+      // cart.set({
+      //   userId: userId,
+      //   status: status
+      // }).then((cart) => {
+
       const cartId = cart.dataValues.id
       console.log(cartId)
       req.body.cartId = cartId
       console.log('Cart found! updating...');
-
-      // return res.status(404).json({ status: 404, msg: "Carrrito no actualizado" })
       next()
+
+      // }).catch((error) => {
+      //   return res.status(400).json({ status: 400, msg: error });
+      // });
+      // return res.status(404).json({ status: 404, msg: "Carrrito no actualizado" })
 
     }
   } catch (error) {
