@@ -155,38 +155,37 @@ const changePassword = async (req, res) => {
 
 };
 
+// Received token fot verify authorization
 const isAuthenticated = async (req, res, next) => {
-
-  // Comprobar si existe el token y si esta expirado
+  // Verify if exist token and this is expired
   try {
-    //Si en el header tenemos la authoization
+    // Get Authorization
     if (req.headers['authorization'] && !isJwtExpired(req.headers['authorization'])) {
-      let cadena = req.headers['authorization'];
-      let result = cadena.includes('Bearer');
-      if (result) {
-        cadena = cadena.substr(7, cadena.length);
+      // Received cadema
+      let token = req.headers['authorization'];
+      if (token) {
+        token = token.substr(7, token.length);
+        console.log(token);
       }
 
-      //Leer el token
-      const decodificada = await promisify(jwt.verify)(cadena, process.env.ACCESS_TOKEN_SECRET)
-      //Buscar el usuario por el correo
-      const datos = await User.findOne({
+      // Decodify token
+      const decodificada = await promisify(jwt.verify)(token, process.env.ACCESS_TOKEN_SECRET)
+      const user = await User.findOne({
         where: {
           email: decodificada.email
         }
       })
-      // Si no ese encuentra un
-      if (!datos) {
+      // if not find User
+      if (!user) {
         res.status(500).json({ msg: 'Ha ocurrido un problema al decodificar el token' })
       } else {
-        User.findByPk(datos.dataValues.id).then(user => {
-          //Guardo los datos del usuario para la sesion
+        User.findByPk(user.dataValues.id).then(user => {
+          //  Save user fot initSession
           req.user = { id: user.id, name: user.name, email: user.email, role: user.role },
             next();
         })
       }
     }
-
     else {
       res.status(401).json({ msg: "Debe iniciar sesión para continuar" })
     }
