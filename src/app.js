@@ -2,7 +2,7 @@ const app = require('./server.js');
 const http = require('http').createServer(app);
 const { sequelize } = require('./database/models/index');
 
-//Port set to .env
+// Port set for .env
 const hostname = '127.0.0.1'; // Ip-local hostdirection.
 const PORT = process.env.PORT || 4000;
 
