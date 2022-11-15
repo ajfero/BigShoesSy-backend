@@ -22,7 +22,6 @@ sequelize db:seed:undo
 npm run start
 
 ```
-
 # App Construction
 - npm init  -> package.json
 - Install dependecies
@@ -88,8 +87,9 @@ npm run start
     │   │
     │   └── server.js <------- Server.
     │
-    └── node_modules/<----------------------------- Dependencies.
-        └── dependecies
+    └── node_modules/
+        └── dependecies <-------- Dependencies.
+        │   │
         │   └── express
         │   │   ├── body-parser
         │   │   └──
@@ -102,7 +102,8 @@ npm run start
         │   └── mysql
         │   └── mysql2
         │   └── sequelize
-        └── devDdependecies
+        │   └──
+        └── devDdependecies <---- DevelopmentDependencies.
             └── nodemon
 
 # Autentificación con JWT y Sequelize
@@ -130,11 +131,9 @@ npx sequelize-cli model:generate --name carts --attributes userId:string,email:s
 
 # userRole
 npx sequelize-cli model:generate --name prfile --attributes name:string,email:string,subject:string,message:string
-
-
 ```
 
-# Resume
+# Resume construction
 - Create **Server**
 - Create **Database**
 - Create **Connection**
@@ -145,40 +144,25 @@ npx sequelize-cli model:generate --name prfile --attributes name:string,email:st
 - Create **Manage data** (user, password, email)
 - Create  **Jwt generate**
 
-
-login
-	email
-	password
-
-register
-	name
-	email
-	password
-	c_password
-	role -> in Backend
-	date -> in Backend
-
-messages
-	name -> user
-	email -> email
-	subject -> title
-	message
-
-Models
-	Users
-		name
-		email
-		password
-		c_password
-
 # endPoints
-(post) /register               "return user"
-(post) /login                  "return userData + Token"
-(get) /logout                  "return 200"
-(post) /change-password        "return 200"
+```
+// users: /api/users/
+  (post)        /register              "return user"
+  (post)        /login                 "return userData + Token"
+  (get)         /logout                "return 200"
+  (post)        /change-password       "return 200"
 
+// profiles: /api/user/profile/
+  (patch)        /                     "return Created a Profile"
+  (get)          /:id                  "return 200 Porfile + User"
+  (patch)        /:id                  "return Update Profile"
 
-(post) /register               "return user"
-(post) /login                  "return userData + Token"
-(get) /logout                  "return 200"
-(post) /change-password        "return 200"
+// carts: /api/users/
+  (post)        /:id/cart              "return Created Cart"
+  (patch)       /:id/cart              "return 200 Cart + DetailsCart"
+  (delete)      /:id/cart              "return Delete Cart + DetailsCart"
+
+// messages: /api/message
+  (post)         /             "return user Created Message"
+  (delete)       /              "return Delete Message"
+```

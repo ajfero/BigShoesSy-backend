@@ -1,6 +1,7 @@
-const {validationResult} = require('express-validator');
+const { validationResult } = require('express-validator');
 
-const validateResult = (req,res,next) => {
+// if result is Ok trow next function
+const validateResult = (req, res, next) => {
     try {
         validationResult(req).throw()
         return next()

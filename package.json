@@ -1,7 +1,7 @@
 {
   "name": "bigshoessy-backend",
-  "version": "1.0.0",
-  "description": "",
+  "version": "2.0.0",
+  "description": "Api-rest Backend for project BigShoesSy",
   "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js",
@@ -14,25 +14,26 @@
     "api-rest",
     "backend",
     "nodeJs",
-    "mySql",
-    "MongoDB"
+    "sequelize",
+    "mySql"
   ],
   "author": "ajfero",
   "license": "MIT",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
-    "body-parser": "^1.20.0",
-    "express": "^4.18.1",
-    "sequelize": "^6.20.1",
+    "express": "^4.18.2",
+    "express-validator": "^6.14.2",
     "jsonwebtoken": "^8.5.1",
     "jwt-check-expiration": "^1.0.5",
-    "bcryptjs": "^2.4.3",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
-    "express-validator": "^6.14.2"
+    "sequelize": "^6.20.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.16",
+    "sequelize-cli": "^6.5.2"
   }
 }
