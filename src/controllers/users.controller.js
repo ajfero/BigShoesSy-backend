@@ -73,11 +73,10 @@ const updateUser = async (req, res) => {
 // Delete an user exist.
 const deleteUser = async (req, res) => {
 
-  // get values on body request.
+  // get values on body request for seatch user into DB
   const { email } = req.body
   const { id } = req.params
-  // console.log(userId)
-
+  // console.log(id)
   let user = await User.findOne({
     where: {
       id: id,
@@ -85,15 +84,18 @@ const deleteUser = async (req, res) => {
     }
   });
 
-  // create a new Profile
-  user.destroy()
-  user.save().then(() => {
-    return res.status(200).json({ status: 200, msg: "Delete User Successeful!!" });
-  })
-    .catch((error) => {
-      // Create Profile error.
-      return res.status(400).json({ status: 400, msg: error });
-    });
+  // Delete User
+  if (user) {
+    user.destroy()
+    user.save().then(() => {
+      return res.status(200).json({ status: 200, msg: "Delete User Successeful!!" });
+    })
+      .catch((error) => {
+        return res.status(400).json({ status: 400, msg: error });
+      });
+  } else {
+    return res.status(400).json({ status: 400, msg: 'User NotFound' });
+  }
 }
 
 module.exports = {

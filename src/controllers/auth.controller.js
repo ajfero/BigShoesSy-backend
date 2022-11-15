@@ -107,28 +107,34 @@ const logIn = async (req, res) => {
 
 };
 
+// Received and change oldPassword for a newPassword
 const changePassword = async (req, res) => {
 
   let { password } = req.body;
-  const jwt_cookie = req.cookies.jwt;
   password = await bcrypt.hash(password, 10);
+
+  let token = req.headers['authorization'];
+  if (token) {
+    token = token.substr(7, token.length);
+    console.log(token);
+  }
   // console.log(jwt.verify(jwt_cookie, process.env.ACCESS_TOKEN_SECRET));
 
-  // serach user by resetToken
+  // search user by resetToken
   try {
-    // received tokenCookie and the accessToken
-    const verifyResult = jwt.verify(jwt_cookie, process.env.ACCESS_TOKEN_SECRET);
 
-    const { email } = verifyResult;
-    user = await User.findOne({
+
+    const verifyResult = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET); // received tokenCookie and the accessToken
+    const { email } = verifyResult; // abstrac the email of resutlVerify
+    const user = await User.findOne({  // search user by Email
       where: {
         email: email,
       },
     });
 
+    // if user Exist, change the password in DB.
     if (user) {
       try {
-        // if user Exist, change the password in DB.
         await User.update(
           { password: password },
           {
@@ -144,11 +150,13 @@ const changePassword = async (req, res) => {
         .status(201)
         .json({ status: "201", msg: "Contraseña cambiada correctamente" });
 
+      // if user don't exist.
     } else {
       return res
         .status(400)
         .json({ status: "400", msg: "Usuario no encontrado" });
     }
+
   } catch (error) {
     return res.status(401).json({ msg: "Algo ha fallado jwt!", error });
   }
@@ -161,7 +169,7 @@ const isAuthenticated = async (req, res, next) => {
   try {
     // Get Authorization
     if (req.headers['authorization'] && !isJwtExpired(req.headers['authorization'])) {
-      // Received cadema
+      // Received token
       let token = req.headers['authorization'];
       if (token) {
         token = token.substr(7, token.length);
@@ -177,7 +185,7 @@ const isAuthenticated = async (req, res, next) => {
       })
       // if not find User
       if (!user) {
-        res.status(500).json({ msg: 'Ha ocurrido un problema al decodificar el token' })
+        res.status(500).json({ msg: "Invalid Token, 'we not found an user with this token decodify'" })
       } else {
         User.findByPk(user.dataValues.id).then(user => {
           //  Save user fot initSession
@@ -198,6 +206,11 @@ const isAuthenticated = async (req, res, next) => {
 const logOut = async (req, res, next) => {
   //Eliminar cookie jwt
   res.clearCookie("jwt");
+  console.log("Cookie cleared");
+  return res.status(200).json({ msg: 'Ha cerrado session con exito' })
+
+  // return res.status(200).redirect('/login');
+  // next();
 };
 
 module.exports = {
