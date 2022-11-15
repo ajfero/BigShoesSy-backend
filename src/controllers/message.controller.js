@@ -5,11 +5,12 @@ const sequelize = require('sequelize');
 const createMessage = async (req, res) => {
 
     // get values of body
-    const { name, email, subject, message } = req.body
+    const { userId, name, email, subject, message } = req.body
 
     // Create Message
     Message.create({
         // Assign values to messages
+        userId: userId,
         name: name,
         email: email,
         subject: subject,

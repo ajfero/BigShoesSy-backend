@@ -80,7 +80,7 @@ module.exports = (sequelize, DataTypes) => {
 
   // Define association here
   Message.associate = function (models) {
-    Message.belongsTo(models.User, { as: "owner", foreignKey: "userId" })
+    Message.belongsTo(models.User, { foreignKey: "userId" })
   };
 
   return Message;
