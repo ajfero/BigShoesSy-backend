@@ -52,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
   // Define association here
   User.associate = function (models) {
     User.hasOne(models.Profile, { foreignKey: "userId" }) // asociaty for get User
-    User.hasOne(models.Cart, { foreignKey: "userId" });
+    // User.hasOne(models.Cart, { foreignKey: "userId" });
   };
 
   // Verify role of User

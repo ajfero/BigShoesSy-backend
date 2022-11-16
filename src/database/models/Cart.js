@@ -38,10 +38,10 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   // Define association here
-  Cart.associate = function (models) {
-    // Cart.hasOne(models.User, { foreignKey: "id" }) // asociaty for get User
-    // Cart.belongsTo(models.User, { as: "user", foreignKey: "id" })
-  };
+  // Cart.associate = function (models) {
+  //   // Cart.hasOne(models.User, { foreignKey: "id" }) // asociaty for get User
+  //   // Cart.belongsTo(models.User, { as: "user", foreignKey: "id" })
+  // };
 
   return Cart;
 
