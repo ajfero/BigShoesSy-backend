@@ -22,8 +22,8 @@ const validateMessage = [
         .withMessage('El Titulo debe contener entre 10 a 100 caracteres'),
     check('message')
         .exists()
-        .isLength({ min: 20, max: 256 })
-        .withMessage('El Mensage debe contener entre 20 a 256 caracteres'),
+        .isLength({ min: 20, max: 1024 })
+        .withMessage('El Mensage debe contener entre 20 a 1024 caracteres'),
     (req, res, next) => {
         validateResult(req, res, next)
     }

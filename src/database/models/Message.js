@@ -66,7 +66,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: { msg: "Message required" },
         len: {
-          args: [20, 256],
+          args: [20, 1024],
           msg: "The message should by max 20 Characters"
         }
       },
