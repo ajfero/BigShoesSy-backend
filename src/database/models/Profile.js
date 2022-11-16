@@ -18,10 +18,6 @@ module.exports = (sequelize, DataTypes) => {
 
     userId: {
       type: DataTypes.INTEGER,
-      references: {
-        model: 'users',
-        key: "id"
-      },
       onDelete: "CASCADE",
     },
     name: {
@@ -74,7 +70,7 @@ module.exports = (sequelize, DataTypes) => {
 
   // Define association here
   Profile.associate = function (models) {
-    Profile.belongsTo(models.User, { foreignKey: "userId" })
+    // Profile.belongsTo(models.User, { foreignKey: "userId" })
     // Profile.hasOne(models.User, { foreignKey: "id" }) // asociaty for get User
 
   };

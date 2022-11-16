@@ -17,13 +17,9 @@ module.exports = (sequelize, DataTypes) => {
 
     userId: {
       allowNull: true,
-      references: {
-        model: "users",
-        key: "id"
-      },
+      defaultValue: null,
       onDelete: "CASCADE",
-      type: DataTypes.INTEGER,
-      defaultValue: "null"
+      type: DataTypes.INTEGER
     },
     name: {
       allowNull: false,
@@ -34,8 +30,7 @@ module.exports = (sequelize, DataTypes) => {
           msg: "The name must have 3 and 50 letters."
         }
       },
-      type: DataTypes.STRING(50),
-
+      type: DataTypes.STRING(50)
     },
     email: {
       allowNull: false,
@@ -80,7 +75,7 @@ module.exports = (sequelize, DataTypes) => {
 
   // Define association here
   Message.associate = function (models) {
-    Message.belongsTo(models.User, { foreignKey: "userId" })
+    // Message.belongsTo(models.User, { foreignKey: "userId" })
   };
 
   return Message;

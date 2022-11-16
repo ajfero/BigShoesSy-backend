@@ -20,10 +20,6 @@ module.exports = (sequelize, DataTypes) => {
 
     cartId: {
       allowNull: false,
-      references: {
-        model: "carts",
-        key: "id"
-      },
       onDelete: "CASCADE",
       type: DataTypes.INTEGER,
     },
