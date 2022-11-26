@@ -49,8 +49,6 @@ const updateUser = async (req, res) => {
 
   // get values on body request.
   const { email } = req.body
-  // console.log(userId)
-
   let user = await User.findOne({
     where: {
       id: req.params.id
@@ -76,7 +74,6 @@ const deleteUser = async (req, res) => {
   // get values on body request for seatch user into DB
   const { email } = req.body
   const { id } = req.params
-  // console.log(id)
   let user = await User.findOne({
     where: {
       id: id,

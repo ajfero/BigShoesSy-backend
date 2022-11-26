@@ -38,7 +38,7 @@ app.use("/api/users", cartRoute);
 app.use("/api", messageRoute);
 
 // Server statics Files.
-app.use('/app', express.static('public')) // http://localhost:9000/app/ le decimos a la ppa que en la ruta app use la funcion stactic para la carpeta public
+app.use('/app', express.static('public')) // http://localhost:9000/app/ le decimos a la app que en la ruta app use la funcion stactic para la carpeta public
 
 //Elimina el cache, para evitar errores con Logout
 app.use(function (req, res, next) {

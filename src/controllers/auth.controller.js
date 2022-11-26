@@ -24,8 +24,6 @@ const register = async (req, res, next) => {
     req.body.userId = userId
     next();
 
-    // Return a response create User
-    // res.status(200).json({ status: 200, msg: "Usuario creado correctamente", user });
   })
     .catch((error) => {
       // Creater User Error
@@ -118,11 +116,9 @@ const changePassword = async (req, res) => {
     token = token.substr(7, token.length);
     console.log(token);
   }
-  // console.log(jwt.verify(jwt_cookie, process.env.ACCESS_TOKEN_SECRET));
 
   // search user by resetToken
   try {
-
 
     const verifyResult = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET); // received tokenCookie and the accessToken
     const { email } = verifyResult; // abstrac the email of resutlVerify
@@ -204,13 +200,12 @@ const isAuthenticated = async (req, res, next) => {
 
 // Clear the cache Cookies
 const logOut = async (req, res, next) => {
+
   //Eliminar cookie jwt
   res.clearCookie("jwt");
   console.log("Cookie cleared");
   return res.status(200).json({ msg: 'Ha cerrado session con exito' })
 
-  // return res.status(200).redirect('/login');
-  // next();
 };
 
 module.exports = {

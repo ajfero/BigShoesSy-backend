@@ -10,9 +10,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // Cart.belongsTo(models.Detailcart, { foreignKey: "cartId" })// asociaty for get User
-      // Cart.hasOne(models.Detailcart, { foreignKey: "cartId" })// asociaty for get User
-      // Cart.belongsTo(models.User, { foreignKey: "id" })
     }
   }
 
@@ -39,21 +36,9 @@ module.exports = (sequelize, DataTypes) => {
 
   // Define association here
   Cart.associate = function (models) {
-    // Cart.hasOne(models.User, { foreignKey: "id" }) // asociaty for get User
     // Cart.belongsTo(models.User, { as: "user", foreignKey: "id" })
   };
 
   return Cart;
 
 };
-
-// const count = await DetailCart.count();
-
-// console.log(count); // 6
-
-// attributes: {
-//   include: [
-//     [sequelize.fn('COUNT', sequelize.col('hats')), 'n_hats']
-//   ]
-// }
-// SELECT COUNT(amountProducts) FROM carts AS totalProducts;

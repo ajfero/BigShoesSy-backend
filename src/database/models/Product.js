@@ -10,7 +10,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // Products.belongsToMany(models.Cart, { foreignKey: "productsId" })
     }
   }
 
@@ -55,7 +54,6 @@ module.exports = (sequelize, DataTypes) => {
   // Define association here
   Product.associate = function (models) {
     // Products.hasMany(models.DetailCart, { foreignKey: "id" }) // asociaty for get User
-    // Cart.belongsTo(models.Cart, { as: "cart", foreignKey: "id" })
   };
 
   return Product;

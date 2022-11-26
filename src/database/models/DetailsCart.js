@@ -10,9 +10,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // DetailsCart.hasOne(models.Cart, { foreignKey: "cartId" })
-      // DetailsCart.belongsTo(models.Cart, { foreignKey: "id" })
-      // DetailsCart.hasMany(models.Products, { foreignKey: "id" })
     }
   }
 
@@ -44,7 +41,6 @@ module.exports = (sequelize, DataTypes) => {
 
   // Define association here
   DetailsCart.associate = function (models) {
-    // DetailsCart.hasOne(models.Cart, { foreignKey: "carId" }) // asociaty for get User
     // DetailsCart.hasMany(models.Products, { foreignKey: "id" }) // asociaty for get User
   };
 

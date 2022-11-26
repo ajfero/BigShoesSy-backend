@@ -15,6 +15,5 @@ router.put('/:id', isExist, isAuthenticated, updateUser); // UPDATE --> one user
 router.delete('/:id', isExist, isAuthenticated, deleteUser); // DELETE --> one user. http://localhost:3000/api/users/:id
 
 /* OTHERS ENDPOINT */
-// router.get('/:id', isExist, isAuthenticated, find); // get one user. http://localhost:3000/api/users/:id
 
 module.exports = router

@@ -26,8 +26,6 @@ const createCart = async (req, res, next) => {
         const cartId = cart.dataValues.id
         console.log(cartId)
         req.body.cartId = cartId
-
-        // return res.status(200).json({ status: 200, msg: "Create Cart Successeful!!", cart }); // test of create cart
         next()
 
       })
@@ -38,22 +36,11 @@ const createCart = async (req, res, next) => {
       // update cart if exist.
     } else {
 
-      // const { status } = req.body
-      // cart.set({
-      //   userId: userId,
-      //   status: status
-      // }).then((cart) => {
-
       const cartId = cart.dataValues.id
       console.log(cartId)
       req.body.cartId = cartId
       console.log('Cart found! updating...');
       next()
-
-      // }).catch((error) => {
-      //   return res.status(400).json({ status: 400, msg: error });
-      // });
-      // return res.status(404).json({ status: 404, msg: "Carrrito no actualizado" })
 
     }
   } catch (error) {
@@ -64,7 +51,6 @@ const createCart = async (req, res, next) => {
 
 // Get a Cart
 
-
 module.exports = {
 
   createCart,
@@ -72,80 +58,3 @@ module.exports = {
 
 }
 
-
-// Update a Profile of user.
-// const updateCart = async (req, res) => {
-
-//   // get values on body request.
-
-//   let detailsCart = await DetailsCart.findOne({
-//     where: {
-//       userId: req.params.id
-//     }
-//   });
-//   // console.log(userId)
-
-//   // create a new Profile
-//   profile.set({
-
-//     name: name,
-//     lastname: lastname,
-//     phone: phone,
-//     imgUrl: imgUrl,
-//     socialRed: socialRed,
-//   })
-//   profile.save().then((profile) => {
-//     return res.status(200).json({ status: 200, msg: "Update User Successeful!!", profile });
-//   })
-//     .catch((error) => {
-//       // Create Profile error.
-//       return res.status(400).json({ status: 400, msg: error });
-//     });
-// }
-
-// Get and return an userProfile
-// const getCart = async (req, res) => {
-
-//   try {
-//     let cart = await Cart.findOne({
-//       where: {
-//         userId: req.params.id
-//       },
-//       attributes: [
-//         'id',
-//         'detailSCart',
-//         {
-//           include: {
-//             model: DetailsCart,
-//             where: {
-//               cartId: cartId
-//             },
-//           },
-//         },
-//         'phone',
-//         'imgUrl',
-//         'socialRed',
-//         'role'
-//       ],
-//       include: {
-//         model: User,
-//         where: {
-//           id: req.params.id
-//         },
-//         attributes: [
-//           'id',
-//           'email',
-//         ],
-//       },
-//     });
-
-//     if (profile) {
-//       return res.status(200).json(profile)
-//     } else {
-//       return res.status(404).json({ status: 404, msg: "Profile not fount" })
-//     }
-//   } catch (error) {
-//     return res.status(400).json({ status: 400, error })
-//   }
-
-// };

@@ -13,8 +13,4 @@ router.get('/', isAuthenticated, getAllProfile); // GET --> all Profiles. http:/
 router.get('/:id', isAuthenticated, getProfile); // GET --> one Profile. http://localhost:3000/api/user/profile/:id
 router.patch('/:id', isAuthenticated, updateProfile); // PATCH --> update a Profile. http://localhost:3000/api/user/profile/:id
 
-/* OTHERS ENDPOINT */
-// router.get('/:id', isExist, isAuthenticated, find); // READ one user. http://localhost:3000/api/users/:id
-// router.delete('/:id', isExist, isAuthenticated, delete); // DELETE one user. http://localhost:3000/api/users/:id
-
 module.exports = router
